@@ -179,3 +179,25 @@ function changeBackgroundColor() {
 }
 
 setInterval(changeBackgroundColor, 2000);
+// Update the handleTouchMove function
+function handleTouchMove(event) {
+    event.preventDefault();
+    touchEndX = event.touches[0].clientX;
+  
+    // Call moveLeft or moveRight based on touch movement
+    if (touchEndX < touchStartX) {
+      // Move character left
+      moveLeft();
+    } else if (touchEndX > touchStartX) {
+      // Move character right
+      moveRight();
+    }
+  }
+  
+  // Update the event listeners for touch events
+  document.addEventListener('touchstart', handleTouchStart, false);
+  document.addEventListener('touchmove', function (event) {
+    handleTouchMove(event);
+  }, false);
+  document.addEventListener('touchend', handleTouchEnd, false);
+  
